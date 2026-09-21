@@ -38,13 +38,6 @@ body[data-accent="blue"]{--accent:#2563eb;--accent-soft:#eff6ff;--accent-border:
 body[data-accent="violet"]{--accent:#7c3aed;--accent-soft:#f5f3ff;--accent-border:#ddd6fe}
 body[data-accent="emerald"]{--accent:#059669;--accent-soft:#ecfdf5;--accent-border:#a7f3d0}
 body[data-accent="amber"]{--accent:#d97706;--accent-soft:#fffbeb;--accent-border:#fde68a}
-body[data-accent="rose"]{--accent:#e11d48;--accent-soft:#fff1f2;--accent-border:#fecdd3}
-body[data-accent="orange"]{--accent:#ea580c;--accent-soft:#fff7ed;--accent-border:#fed7aa}
-body[data-accent="indigo"]{--accent:#4f46e5;--accent-soft:#eef2ff;--accent-border:#c7d2fe}
-body[data-accent="teal"]{--accent:#0d9488;--accent-soft:#f0fdfa;--accent-border:#99f6e4}
-body[data-accent="fuchsia"]{--accent:#c026d3;--accent-soft:#fdf4ff;--accent-border:#f5d0fe}
-body[data-accent="sky"]{--accent:#0284c7;--accent-soft:#f0f9ff;--accent-border:#bae6fd}
-
 body[data-theme="dark"]{background:#0b1120;color:#e2e8f0}
 body[data-theme="dark"] .dashboard-toolbar,body[data-theme="dark"] .record-card,body[data-theme="dark"] .app-footer{background:#111827;border-color:#243244}
 body[data-theme="dark"] .section-heading h2,body[data-theme="dark"] .record-title{color:#f8fafc}
@@ -1214,12 +1207,3 @@ body[data-theme="dark"] .file-center-search,body[data-theme="dark"] .file-center
   .file-summary-heading{align-items:flex-start!important;gap:7px!important}
   .summary-heading-actions{width:100%!important;justify-content:space-between!important}
 }
-
-
-/* FINAL V43 MASTER CONSOLIDATION */
-.search-kbd{display:none!important}
-.settings-actions{display:flex;justify-content:flex-end;gap:7px;padding:10px 0;border-top:1px solid #e2e8f0;margin-top:8px}
-body[data-theme="dark"] .settings-actions{border-top-color:#25354a}
-/* Active Model rail remains locked/sticky on the office laptop while records scroll. */
-@media(min-width:901px){.model-sidebar{position:sticky!important;top:64px!important;height:calc(100vh - 64px)!important;align-self:start!important;overflow-y:auto!important}.records-grid{grid-template-columns:repeat(6,minmax(0,1fr))!important}.records-grid .record-card[data-record="O"]{grid-column:span 2!important}}
-@media(max-width:900px){.model-sidebar{position:relative!important;top:auto!important;height:auto!important;overflow:visible!important}.settings-actions{flex-wrap:wrap}}
