@@ -1,0 +1,106 @@
+MOBILE R&D ENGINEERING PORTAL — FINAL V43 MASTER
+OFFICE-LAPTOP MASTER BUILD
+
+MASTER PURPOSE
+This build consolidates the portal improvements requested during the Sep 21 morning-to-6 PM working session and preserves the final A–U structure.
+
+DATA / RECORDS
+- Exactly 21 records A–U for every model.
+- A Block Diagram
+- B Circuit Diagram
+- C SOC Table
+- D MIPI Table
+- E RF Port Map
+- F Antenna Structure
+- G Main and Roaming Bands Details
+- H VSWR Graph
+- I Process Flow Chart
+- J New Technology Introduced
+- K OPST Sheet
+- L Base Model Defect History
+- M Other Subsidiary Defect Details
+- N SW Log Process
+- O Key Parts Details
+- P Basic Model Details
+- Q Common and Exclusive Part Details
+- R Work Specification
+- S Korea Member Details
+- T Hardware Checklist
+- U Common (always last)
+
+CATEGORIES / NAMES
+- Block Diagram
+- Schematics / Circuit & SOC
+- RF & Wireless / RF & Antenna
+- Process & Tech / Process & OPST
+- Defect summary & SW process
+- Key Parts
+- Specification
+- New Technology tag uses “Antenna Type”.
+- RF Port Map does not use “FEM Routing”.
+
+CARD ORDER / COLORS
+- Category-grouped A–U order is enforced by data-record keys, not nth-child order.
+- Block Diagram: purple #7c3aed
+- Schematics: blue #2563eb
+- RF & Wireless: green #059669
+- Process & Tech: amber #d97706
+- Defect summary & SW process: indigo #4f46e5
+- Key Parts: purple #9333ea
+- Specification: slate #475569
+- U/Common is always final.
+
+LAPTOP / DESKTOP
+- 6 cards per row at desktop/laptop breakpoint >=1200px.
+- Active Model sidebar remains sticky while record cards scroll.
+- Key Parts O spans 2 columns on desktop/laptop.
+- Key Parts file area keeps 2 parts per row: Display/Camera, Speaker/Battery, Front/Sensor.
+- Compact card sizing and improved small text readability are retained.
+- Ctrl+K visual badge is hidden as requested.
+
+MODEL / SUMMARY
+- Searchable model picker.
+- Models: A576, A376, A076, A075, A085, S741.
+- Model File Summary checks real IndexedDB storage for Present/Missing status.
+- Summary remains compact in two rows and horizontally scrollable on narrow screens.
+- Hide/unhide summary behavior is retained.
+
+FILES / UPLOADS
+- File upload remains the central workflow.
+- IndexedDB stores uploaded binaries.
+- PDF/XLS/XLSX/ZIP/BIN/DWG/CSV/DOC/DOCX/PPT/PPTX supported.
+- A predefined filename/reference is NOT treated as an uploaded/downloadable file.
+- After an actual upload, the uploaded filename replaces the reference display and a real DOWNLOAD button is shown.
+- Existing IndexedDB uploads are hydrated on startup so previously uploaded files remain recognized.
+- Download uses the actual stored binary; no fake TXT download is generated.
+- PPT/PPTX uploaded to any record can be downloaded as the actual uploaded file.
+
+ADMIN / SETTINGS
+- Admin login/session and upload controls retained.
+- Theme, accent, density and motion settings retained.
+- Expanded accent palette retained: Cyan, Blue, Violet, Emerald, Amber, Rose, Orange, Indigo, Teal, Fuchsia, Sky.
+- Apply and OK controls added to Settings.
+- System theme resolves from the OS preference.
+- Accent variables apply portal-wide.
+
+PERSISTENCE / SAFETY
+- localStorage V10 data persistence retained.
+- Legacy record-key migration retained.
+- Missing standard A–U records are restored deterministically.
+- Favorites, recent model and preferences persist locally.
+- Existing IndexedDB files are not intentionally discarded.
+
+RESPONSIVE
+- Office laptop is the primary layout.
+- Desktop/laptop: 6-column records.
+- Mobile fallback: single-column cards and full-width workspace.
+- Viewport metadata is present.
+
+VERIFICATION PERFORMED
+- models.js loads as an ES module.
+- RECORD_ORDER length = 21.
+- createDefaultData() produces 21 records for each model.
+- T = Hardware Checklist; U = Common.
+- app.js syntax check passes.
+- No active HTML placeholder remains at 19 records.
+- Cache-busting version updated to V43-MASTER.

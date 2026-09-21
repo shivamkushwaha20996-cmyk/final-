@@ -1,0 +1,42 @@
+MASTER CHANGE LIST — Sep 21, 2026 morning through 6 PM
+
+1. Started from the complete portal ZIP shared in the morning.
+2. Switched subsequent work to modified-file-only changes during the day.
+3. Fixed desktop record overlap and card overflow.
+4. Cleaned header/category/storage/presentation controls and reduced unwanted presentation/fullscreen clutter.
+5. Established File Command Center as a central file workflow.
+6. Added/retained mobile responsive corrections.
+7. Made the portal laptop/desktop-first.
+8. Requested compact professional Engineering Records cards.
+9. Rearranged records by category/group instead of the original mixed A–S order.
+10. Renamed Quality & SW to Defect summary & SW process.
+11. Renamed Specs & Team to Specification.
+12. Changed New Technology tag from LDS Antenna to Antenna Type.
+13. Removed FEM Routing from RF Port Map.
+14. Added/positioned VSWR Graph as H.
+15. Added Hardware Checklist as T.
+16. Moved Common to U and forced Common to remain last.
+17. Finalized exact A–U record order.
+18. Finalized category colors: Block Diagram purple, Schematics blue, RF green, Process amber, Defect/SW indigo, Key Parts purple, Specification slate.
+19. Fixed deterministic restoration so all 21 A–U records return instead of 3 or 19.
+20. Made Key Parts O wider horizontally rather than vertically oversized.
+21. Key Parts uses two parts per row: Display/Camera, Speaker/Battery, Front/Sensor.
+22. Reduced Key Parts/card sizing while improving font visibility.
+23. Made laptop layout six cards per row.
+24. Kept Active Model block locked/sticky while scrolling records on laptop/desktop.
+25. Made accent color visible across the whole dashboard, not only the upload area.
+26. Expanded accent palette and retained theme/density/motion settings.
+27. Added searchable model picker instead of a permanently expanded long model list.
+28. Built Model File Summary with compact two-row layout, green Present/red Missing indicators, selected-model status, and hide/unhide behavior.
+29. Added horizontal scrolling for summary on narrow screens.
+30. Preserved model set A576, A376, A076, A075, A085, S741.
+31. Kept admin/login/upload workflow and IndexedDB storage.
+32. Fixed uploaded-file behavior: predefined reference filenames are not fake downloads.
+33. Actual uploaded PPT/PPTX replaces the reference display and receives a real DOWNLOAD action.
+34. Added startup hydration of IndexedDB so previously uploaded files remain recognized.
+35. Kept search, category filters, favorites, sorting, recently viewed, export JSON/report, backup/reset and record navigation.
+36. Kept legacy migration and persistence safety.
+37. Hid the Ctrl+K visual badge while retaining keyboard functionality.
+38. Added Settings Apply/OK controls and system-theme resolution.
+39. Preserved mobile fallback while keeping office-laptop layout primary.
+40. Changed cache version to V43-MASTER to prevent stale CSS/JS after deployment.
