@@ -17,23 +17,28 @@ function loadData() {
   catch { return createDefaultData(); }
 }
 
-function collectRecords() {
+async function collectRecords() {
   const data = loadData();
   const out = [];
   for (const model of MODEL_ORDER) {
     const items = data[model]?.items || {};
-    const keys = [...RECORD_ORDER.slice(0, 18), "HWC", "S"];
-    for (const key of keys) {
+    for (const key of RECORD_ORDER) {
       const item = items[key];
-      if (!item || !item.filename) continue;
-      out.push({
-        model,
-        key,
-        title: item.title || key,
-        category: item.category || "General",
-        filename: item.filename,
-        size: item.size || "—"
-      });
+      if (!item) continue;
+      try {
+        const stored = await getFile(`${model}_${key}`);
+        if (!stored?.blob) continue;
+        out.push({
+          model,
+          key,
+          title: item.title || key,
+          category: item.category || "General",
+          filename: stored.filename || item.filename || "Uploaded file",
+          size: stored.size ? formatBytes(stored.size) : (item.size || "—")
+        });
+      } catch (err) {
+        console.warn("File Command Center lookup failed", model, key, err);
+      }
     }
   }
   return out;
@@ -58,7 +63,7 @@ function open() { modal()?.classList.remove("hidden"); refresh(); }
 
 function renderModelOptions() {
   const select = document.getElementById("fileCenterModel");
-  if (!select || select.options.length) return;
+  if (!select || select.options.length > 1) return;
   select.innerHTML = `<option value="">All models</option>` + MODEL_ORDER.map(m => `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join("");
 }
 
@@ -99,7 +104,7 @@ async function recentUploads() {
     const logs = await getAuditLogs(30);
     const uploads = (logs || []).filter(x => x.action === "UPLOAD").slice(0, 5);
     el.innerHTML = uploads.length ? uploads.map(x => {
-      const d = x.timestamp ? new Date(x.timestamp).toLocaleString() : "";
+      const d = (x.at || x.timestamp) ? new Date(x.at || x.timestamp).toLocaleString() : "";
       const p = x.details || {};
       return `<div class="file-center-recent-item"><i class="fa-solid fa-cloud-arrow-up"></i><span><strong>${escapeHtml(p.filename || "Engineering file")}</strong><small>${escapeHtml(p.model || "")} · ${escapeHtml(p.key || "")} · ${escapeHtml(d)}</small></span></div>`;
     }).join("") : `<div class="file-center-recent-empty">No recent uploads recorded.</div>`;
@@ -151,8 +156,8 @@ async function previewRow(row) {
   document.getElementById("filePreviewModal")?.classList.remove("hidden");
 }
 
-function refresh() {
-  rows = collectRecords();
+async function refresh() {
+  rows = await collectRecords();
   renderModelOptions();
   render();
   recentUploads();
@@ -162,7 +167,7 @@ function bind() {
   const btn = document.getElementById("fileCenterBtn");
   if (!btn) return;
   btn.addEventListener("click", open);
-  document.getElementById("fileCenterRefresh")?.addEventListener("click", refresh);
+  document.getElementById("fileCenterRefresh")?.addEventListener("click", () => refresh());
   document.getElementById("fileCenterSearch")?.addEventListener("input", render);
   document.getElementById("fileCenterModel")?.addEventListener("change", render);
   document.querySelectorAll("[data-close-file-center]").forEach(b => b.addEventListener("click", () => document.getElementById(b.dataset.closeFileCenter)?.classList.add("hidden")));

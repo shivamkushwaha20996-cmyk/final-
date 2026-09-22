@@ -1,6 +1,7 @@
 const DB_NAME="MobileRD_Master_DB";
-const DB_VERSION=2;
+const DB_VERSION=3;
 const FILE_STORE="files";
+const LEGACY_FILE_STORE="heavy_files";
 const LOG_STORE="audit";
 
 function openDB(){
@@ -8,8 +9,23 @@ function openDB(){
     const req=indexedDB.open(DB_NAME,DB_VERSION);
     req.onupgradeneeded=e=>{
       const db=e.target.result;
+      const tx=e.target.transaction;
       if(!db.objectStoreNames.contains(FILE_STORE)) db.createObjectStore(FILE_STORE);
       if(!db.objectStoreNames.contains(LOG_STORE)) db.createObjectStore(LOG_STORE,{keyPath:"id",autoIncrement:true});
+
+      // Older portal builds stored binaries in `heavy_files`. Migrate them
+      // into the current `files` store so an existing laptop does not lose
+      // access to previously uploaded engineering documents.
+      if(db.objectStoreNames.contains(LEGACY_FILE_STORE)) {
+        const oldStore=tx.objectStore(LEGACY_FILE_STORE);
+        const newStore=tx.objectStore(FILE_STORE);
+        oldStore.openCursor().onsuccess=event=>{
+          const cursor=event.target.result;
+          if(!cursor)return;
+          if(cursor.value?.blob)newStore.put(cursor.value,cursor.primaryKey);
+          cursor.continue();
+        };
+      }
     };
     req.onsuccess=()=>resolve(req.result);
     req.onerror=()=>reject(req.error);
