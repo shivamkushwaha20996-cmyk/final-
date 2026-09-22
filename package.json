@@ -2,6 +2,7 @@
   "name": "mobile-rd-engineering-portal",
   "version": "2.0.0",
   "private": true,
+  "type": "module",
   "description": "Desktop-first Mobile R&D Engineering Portal",
   "scripts": {
     "start": "python -m http.server 8080"

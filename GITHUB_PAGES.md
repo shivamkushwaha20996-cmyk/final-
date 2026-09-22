@@ -1,10 +1,5 @@
 # GitHub Pages
 
-1. Create a GitHub repository.
-2. Upload/push all files from this project.
-3. Push to the `main` branch.
-4. Open repository **Settings → Pages**.
-5. Select **GitHub Actions** as the build/deployment source.
-6. The included `.github/workflows/pages.yml` deploys the static site.
+Upload the contents of this folder to the repository root. `index.html` loads `css/dashboard.css`, `js/app.js` and `js/file-command-center.js` with the V44 cache version.
 
-No build step is required for the current project.
+After deployment, use a hard refresh if the browser has an older cached build.
